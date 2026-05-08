@@ -13,6 +13,8 @@ ENV/
 data/raw/*.csv
 data/processed/*.csv
 data/logs/*.log
+data/dimensions/*.csv
+data/fact/*.csv
 
 # IDE
 .vscode/
