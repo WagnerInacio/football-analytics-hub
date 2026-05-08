@@ -1,0 +1,72 @@
+cartao_id,partida_id,time_id,player_id,player_nome,minuto,minuto_extra,tipo_cartao
+1,1180355,118,9994,Jean Lucas,13,,amarelo
+2,1180355,119,106485,Maurício,29,,amarelo
+3,1180355,119,452,Fernando,41,,amarelo
+4,1180355,119,982,Lucas Alario,88,,amarelo
+5,1180355,119,2044,Gabriel Mercado,90,4.0,amarelo
+6,1180355,119,6080,Fabricio Bustos,90,3.0,amarelo
+7,1180355,118,2173,Carlos De Pena,90,6.0,amarelo
+8,1180355,118,10222,Everaldo,90,4.0,amarelo
+9,1180364,152,70368,João Lucas,32,,amarelo
+10,1180364,152,66899,Zé Marcos,33,,amarelo
+11,1180364,152,77799,Jean Carlos,45,7.0,amarelo
+12,1180364,140,80624,Fellipe Mateus,59,,amarelo
+13,1180364,152,159653,Caique Gonçalves,64,,amarelo
+14,1180364,140,10096,Marquinhos Gabriel,67,,amarelo
+15,1180364,140,1432,Yannick Bolasie,90,6.0,amarelo
+16,1180364,140,2424,Miguel Trauco,90,2.0,amarelo
+17,1180364,152,77843,Rodrigo Sam,90,6.0,amarelo
+18,1180364,152,31384,Gabriel Vasconcelos,90,4.0,amarelo
+19,1180358,124,9874,Guga,-5,,amarelo
+20,1180358,794,9906,Luan Cândido,9,,amarelo
+21,1180358,124,311520,Marquinhos,29,,amarelo
+22,1180358,794,10481,Juninho Capixaba,44,,amarelo
+23,1180358,794,10147,Vitinho,81,,amarelo
+24,1180358,794,80539,Jadsom,83,,amarelo
+25,1180358,124,265784,André,90,2.0,amarelo
+26,1180361,154,6242,Tomás Pochettino,23,,amarelo
+27,1180361,154,6078,Emanuel Brítez,51,,amarelo
+28,1180361,154,6326,Juan Martín Lucero,54,,amarelo
+29,1180361,126,10323,Luciano,75,,amarelo
+30,1180361,126,9954,Rodrigo Nestor,90,8.0,amarelo
+31,1180360,131,10373,Carlos Miguel,-5,,amarelo
+32,1180360,1062,1484,Rodrigo Battaglia,1,,amarelo
+33,1180360,1062,96,Jemerson,22,,amarelo
+34,1180360,131,2521,Ángel Romero,28,,amarelo
+35,1180360,131,160436,Raniele,31,,amarelo
+36,1180360,131,2411,Fagner,32,,amarelo
+37,1180360,131,10007,Yuri Alberto,45,6.0,amarelo
+38,1180360,1062,1484,Rodrigo Battaglia,45,4.0,amarelo
+39,1180360,1062,1484,Rodrigo Battaglia,45,4.0,vermelho
+40,1180360,1062,12705,Hulk,51,,amarelo
+41,1180360,1062,9978,Éverson,64,,amarelo
+42,1180360,1062,2470,Renzo Saravia,68,,amarelo
+43,1180360,131,10161,Matheuzinho,82,,amarelo
+44,1180360,131,687,Maycon,90,10.0,amarelo
+45,1180360,131,54093,Hugo,90,1.0,amarelo
+46,1180359,133,10578,Rossi,17,,amarelo
+47,1180359,133,237089,Juan Sforza,65,,amarelo
+48,1180359,133,10234,Lucas Piton,90,8.0,amarelo
+49,1180359,133,10225,João Victor,90,6.0,amarelo
+50,1180359,130,30562,João Pedro Galvão,90,1.0,amarelo
+51,1180362,1193,145501,Derik Lacerda,41,,amarelo
+52,1180362,1193,30925,Alan Empereur,45,1.0,amarelo
+53,1180362,1193,41183,Filipe Augusto,81,,amarelo
+54,1180363,144,10261,Vágner Love,-5,,amarelo
+55,1180363,144,54699,Rhaldney,6,,amarelo
+56,1180363,144,288763,Alejo Cruz,36,,amarelo
+57,1180363,127,10089,Fabrício Bruno,44,,amarelo
+58,1180363,144,196887,Adriano Martins,45,6.0,amarelo
+59,1180363,144,9675,Guilherme Romão,45,4.0,amarelo
+60,1180363,144,297893,Alix Vinicius,45,2.0,vermelho
+61,1180363,127,10124,Léo Pereira,68,,amarelo
+62,1180363,144,32948,Maguinho,90,11.0,vermelho
+63,1180363,127,2612,Giorgian De Arrascaeta,90,17.0,amarelo
+64,1180356,120,10031,Gregore,27,,amarelo
+65,1180356,135,10006,Arthur Gomes,31,,amarelo
+66,1180356,135,10114,Zé Ivaldo,36,,amarelo
+67,1180356,120,10432,Júnior Santos,36,,amarelo
+68,1180356,135,13063,Rafael Silva,66,,amarelo
+69,1180356,120,5933,Alexander Barboza,72,,vermelho
+70,1180356,120,22167,Danilo Barbosa,84,,amarelo
+71,1180356,135,9896,Rafael Elias,90,2.0,amarelo

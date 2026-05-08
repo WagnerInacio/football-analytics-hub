@@ -1,0 +1,28 @@
+gol_id,partida_id,time_id,player_id,player_nome,assist_player_id,assist_player_nome,minuto,minuto_extra,tipo_gol,detalhe
+1,1180355,118,305817,Biel,9994.0,Jean Lucas,70,,normal,Normal Goal
+2,1180355,119,70314,Wesley,,,72,,normal,Normal Goal
+3,1180355,119,452,Fernando,9921.0,Bruno Henrique,83,,normal,Normal Goal
+4,1180364,140,9726,Renato Kayzer,10340.0,Marcelo Hermes,36,,normal,Normal Goal
+5,1180364,152,77799,Jean Carlos,10091.0,Jádson,64,,normal,Normal Goal
+6,1180358,124,50532,Lima,10311.0,Ganso,45,4.0,normal,Normal Goal
+7,1180358,794,10004,Eduardo Sasha,10147.0,Vitinho,47,,normal,Normal Goal
+8,1180358,794,197513,T. Borbas,10147.0,Vitinho,52,,normal,Normal Goal
+9,1180358,124,50532,Lima,10311.0,Ganso,68,,normal,Normal Goal
+10,1180361,154,6326,J. Lucero,6242.0,T. Pochettino,66,,normal,Normal Goal
+11,1180361,154,6121,I. Machuca,80330.0,Pedro Augusto,80,,normal,Normal Goal
+12,1180361,126,41188,André Silva,9549.0,Erick,84,,normal,Normal Goal
+13,1180359,133,10105,David,,,24,,normal,Normal Goal
+14,1180359,133,280739,Mateus Carvalho,10578.0,Rossi,37,,normal,Normal Goal
+15,1180359,130,304867,Gustavo Martins,,,68,,normal,Normal Goal
+16,1180362,134,9976,Pablo,9661.0,Julimar,23,,normal,Normal Goal
+17,1180362,134,51603,A. Canobbio,640.0,Fernandinho,37,,normal,Normal Goal
+18,1180362,134,6228,L. Godoy,51603.0,A. Canobbio,39,,normal,Normal Goal
+19,1180362,134,16669,G. Mastriani,152931.0,B. Zapelli,81,,normal,Normal Goal
+20,1180363,127,5995,N. de la Cruz,,,45,6.0,normal,Normal Goal
+21,1180363,144,10073,Luiz Fernando,32948.0,Maguinho,63,,normal,Normal Goal
+22,1180363,127,10321,3                         Pedro,,,90,13.0,penalti,Penalty
+23,1180356,120,390,Tiquinho Soares,,,5,,normal,Normal Goal
+24,1180356,135,10102,Lucas Silva,10006.0,Arthur Gomes,20,,normal,Normal Goal
+25,1180356,135,13063,Rafa Silva,,,64,,normal,Normal Goal
+26,1180356,120,22167,Danilo Barbosa,197317.0,Hugo,83,,normal,Normal Goal
+27,1180356,135,9896,Rafael Elias,25398.0,William,90,1.0,normal,Normal Goal
