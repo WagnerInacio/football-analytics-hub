@@ -1,19 +1,29 @@
-import requests
+import sys
+from pathlib import Path
 
-API_KEY = "65b86e68bcf588309acb8b4f06730fee"
+# Adiciona raiz do projeto
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+import requests
+from config import API_KEY, BASE_URL, LEAGUE_ID, SEASON, TIMEOUT
 
 headers = {
     "x-apisports-key": API_KEY
 }
 
-url = "https://v3.football.api-sports.io/fixtures"
+url = f"{BASE_URL}/fixtures"
 
 params = {
-    "league": 71,
-    "season": 2024
+    "league": LEAGUE_ID,
+    "season": SEASON
 }
 
-response = requests.get(url, headers=headers, params=params)
+response = requests.get(
+    url,
+    headers=headers,
+    params=params,
+    timeout=TIMEOUT
+)
 
 print(response.status_code)
 print(response.json())

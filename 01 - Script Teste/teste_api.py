@@ -1,8 +1,13 @@
+import sys
+from pathlib import Path
+
+# Adiciona raiz do projeto
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
 import requests
+from config import API_KEY, BASE_URL
 
-API_KEY = "65b86e68bcf588309acb8b4f06730fee"
-
-url = "https://v3.football.api-sports.io/status"
+url = f"{BASE_URL}/status"
 
 headers = {
     "x-apisports-key": API_KEY
