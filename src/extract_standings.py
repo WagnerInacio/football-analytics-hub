@@ -169,6 +169,7 @@ def run_standings_pipeline(
     logger,
     processed_dir: Path,
     facts_dir: Path,
+    qlik_facts_dir: Path | None = None,
 ) -> pd.DataFrame:
     """
     Executa fetch → transform → save (processed + facts).
@@ -180,5 +181,7 @@ def run_standings_pipeline(
 
     save_standings_csv(df, processed_dir / "standings.csv",          logger)
     save_standings_csv(df, facts_dir     / "fato_classificacao.csv", logger)
+    if qlik_facts_dir:
+        save_standings_csv(df, qlik_facts_dir / "fato_classificacao.csv", logger)
 
     return df

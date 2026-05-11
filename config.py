@@ -16,9 +16,19 @@ FACTS_DIR = DATA_DIR / "facts"
 LOGS_DIR = DATA_DIR / "logs"
 SQL_DIR = BASE_DIR / "sql"
 
+# QlikDados mirror paths
+QLIK_DIMENSIONS_DIR = Path(r"C:\QlikDados\03. CSV\API Futebol\dimensions")
+QLIK_FACTS_DIR = Path(r"C:\QlikDados\03. CSV\API Futebol\facts")
+
 # Ensure directories exist
 for directory in [RAW_DATA_DIR, PROCESSED_DATA_DIR, DIMENSIONS_DIR, FACTS_DIR, LOGS_DIR, SQL_DIR]:
     directory.mkdir(parents=True, exist_ok=True)
+
+for directory in [QLIK_DIMENSIONS_DIR, QLIK_FACTS_DIR]:
+    try:
+        directory.mkdir(parents=True, exist_ok=True)
+    except Exception:
+        pass
 
 # API Configuration
 API_KEY = os.getenv("API_KEY")

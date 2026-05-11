@@ -28,11 +28,26 @@ from src.load import Loader
 
 
 class StarSchemaBuilder:
-    def __init__(self, logger, dimensions_dir: Path, facts_dir: Path):
+    def __init__(
+        self,
+        logger,
+        dimensions_dir: Path,
+        facts_dir: Path,
+        extra_dimensions_dirs: list[Path] | None = None,
+        extra_facts_dirs: list[Path] | None = None,
+    ):
         self.logger = logger
-        self.dimensions_dir = dimensions_dir
-        self.facts_dir = facts_dir
+        self.dim_dirs  = [dimensions_dir]  + (extra_dimensions_dirs or [])
+        self.fact_dirs = [facts_dir] + (extra_facts_dirs or [])
         self.loader = Loader(logger)
+
+    def _save_dim(self, df: pd.DataFrame, filename: str) -> None:
+        for d in self.dim_dirs:
+            self.loader.save_to_csv(df, d / filename)
+
+    def _save_fact(self, df: pd.DataFrame, filename: str) -> None:
+        for d in self.fact_dirs:
+            self.loader.save_to_csv(df, d / filename)
 
     def build(
         self,
@@ -55,59 +70,64 @@ class StarSchemaBuilder:
         # ── Dimensões ────────────────────────────────────────────────────────
         self.logger.info("Processando dimensões...")
 
+        # Prioritárias — sempre salvas
         dim_times_df = dim_times.build(teams_raw)
-        self.loader.save_to_csv(dim_times_df, self.dimensions_dir / "dim_times.csv")
-
-        dim_estadios_df = dim_estadios.build(teams_raw)
-        self.loader.save_to_csv(dim_estadios_df, self.dimensions_dir / "dim_estadios.csv")
+        self._save_dim(dim_times_df, "dim_times.csv")
 
         dim_ligas_df = dim_ligas.build(leagues_raw)
-        self.loader.save_to_csv(dim_ligas_df, self.dimensions_dir / "dim_ligas.csv")
+        self._save_dim(dim_ligas_df, "dim_ligas.csv")
 
         dim_temporadas_df = dim_temporadas.build(leagues_raw)
-        self.loader.save_to_csv(dim_temporadas_df, self.dimensions_dir / "dim_temporadas.csv")
+        self._save_dim(dim_temporadas_df, "dim_temporadas.csv")
+
+        dim_rodadas_df = dim_rodadas.build(rounds_raw or [])
+        self._save_dim(dim_rodadas_df, "dim_rodadas.csv")
+
+        # Complementares
+        dim_estadios_df = dim_estadios.build(teams_raw)
+        self._save_dim(dim_estadios_df, "dim_estadios.csv")
 
         dim_arbitros_df = dim_arbitros.build(fixtures_raw)
-        self.loader.save_to_csv(dim_arbitros_df, self.dimensions_dir / "dim_arbitros.csv")
+        self._save_dim(dim_arbitros_df, "dim_arbitros.csv")
 
         dim_datas_df = dim_datas.build(fixtures_raw)
-        self.loader.save_to_csv(dim_datas_df, self.dimensions_dir / "dim_datas.csv")
+        self._save_dim(dim_datas_df, "dim_datas.csv")
 
         if squads_raw:
             dim_jogadores_df = dim_jogadores.build(squads_raw)
-            self.loader.save_to_csv(dim_jogadores_df, self.dimensions_dir / "dim_jogadores.csv")
+            self._save_dim(dim_jogadores_df, "dim_jogadores.csv")
 
         if coaches_raw:
             dim_tecnicos_df = dim_tecnicos.build(coaches_raw)
-            self.loader.save_to_csv(dim_tecnicos_df, self.dimensions_dir / "dim_tecnicos.csv")
-
-        dim_rodadas_df = pd.DataFrame()
-        if rounds_raw:
-            dim_rodadas_df = dim_rodadas.build(rounds_raw)
-            self.loader.save_to_csv(dim_rodadas_df, self.dimensions_dir / "dim_rodadas.csv")
+            self._save_dim(dim_tecnicos_df, "dim_tecnicos.csv")
 
         # ── Fatos ────────────────────────────────────────────────────────────
         self.logger.info("Processando fatos...")
 
+        # Prioritários — sempre salvos
         fato_partidas_df = fato_partidas.build(fixtures_raw, dim_arbitros_df, dim_rodadas_df)
-        self.loader.save_to_csv(fato_partidas_df, self.facts_dir / "fato_partidas.csv")
+        self._save_fact(fato_partidas_df, "fato_partidas.csv")
 
+        fato_class_df = fato_classificacao.build(standings_raw or [])
+        self._save_fact(fato_class_df, "fato_classificacao.csv")
+
+        # Complementares
         fato_resultados_df = fato_resultados.build(fixtures_raw)
-        self.loader.save_to_csv(fato_resultados_df, self.facts_dir / "fato_resultados.csv")
+        self._save_fact(fato_resultados_df, "fato_resultados.csv")
 
         if team_stats_list:
             fato_est_time_df = fato_estatisticas_time.build(team_stats_list)
-            self.loader.save_to_csv(fato_est_time_df, self.facts_dir / "fato_estatisticas_time.csv")
+            self._save_fact(fato_est_time_df, "fato_estatisticas_time.csv")
 
         if events_by_fixture:
             fato_gols_df = fato_gols.build(events_by_fixture)
-            self.loader.save_to_csv(fato_gols_df, self.facts_dir / "fato_gols.csv")
+            self._save_fact(fato_gols_df, "fato_gols.csv")
 
             fato_cartoes_df = fato_cartoes.build(events_by_fixture)
-            self.loader.save_to_csv(fato_cartoes_df, self.facts_dir / "fato_cartoes.csv")
+            self._save_fact(fato_cartoes_df, "fato_cartoes.csv")
 
             fato_subs_df = fato_substituicoes.build(events_by_fixture)
-            self.loader.save_to_csv(fato_subs_df, self.facts_dir / "fato_substituicoes.csv")
+            self._save_fact(fato_subs_df, "fato_substituicoes.csv")
         else:
             self.logger.warning(
                 "Sem eventos de partida — fato_gols, fato_cartoes e "
@@ -116,14 +136,10 @@ class StarSchemaBuilder:
 
         if players_by_fixture:
             fato_est_jog_df = fato_estatisticas_jogador.build(players_by_fixture)
-            self.loader.save_to_csv(fato_est_jog_df, self.facts_dir / "fato_estatisticas_jogador.csv")
-
-        if standings_raw:
-            fato_class_df = fato_classificacao.build(standings_raw)
-            self.loader.save_to_csv(fato_class_df, self.facts_dir / "fato_classificacao.csv")
+            self._save_fact(fato_est_jog_df, "fato_estatisticas_jogador.csv")
 
         self.logger.info("Star Schema construído com sucesso.")
         self.logger.info(
-            f"  Dimensões salvas em: {self.dimensions_dir.name}/  "
-            f"| Fatos salvos em: {self.facts_dir.name}/"
+            f"  Dimensões salvas em: {self.dim_dirs[0].name}/  "
+            f"| Fatos salvos em: {self.fact_dirs[0].name}/"
         )

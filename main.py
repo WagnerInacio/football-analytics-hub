@@ -4,6 +4,7 @@ from datetime import datetime
 from config import (
     LOGS_DIR, RAW_DATA_DIR, PROCESSED_DATA_DIR,
     DIMENSIONS_DIR, FACTS_DIR, MAX_DAILY_REQUESTS,
+    QLIK_DIMENSIONS_DIR, QLIK_FACTS_DIR,
 )
 from src.logger import setup_logger
 from src.api_client import APIClient
@@ -27,7 +28,11 @@ def main():
     extractor   = Extractor(client, logger)
     transformer = Transformer(logger)
     loader      = Loader(logger)
-    star_builder = StarSchemaBuilder(logger, DIMENSIONS_DIR, FACTS_DIR)
+    star_builder = StarSchemaBuilder(
+        logger, DIMENSIONS_DIR, FACTS_DIR,
+        extra_dimensions_dirs=[QLIK_DIMENSIONS_DIR],
+        extra_facts_dirs=[QLIK_FACTS_DIR],
+    )
 
     try:
         # ── 1. Dados Base (Liga, Times, Estádios) ─────────────────────────────
@@ -63,6 +68,7 @@ def main():
             logger=logger,
             processed_dir=PROCESSED_DATA_DIR,
             facts_dir=FACTS_DIR,
+            qlik_facts_dir=QLIK_FACTS_DIR,
         )
         # Mantém raw simples para compatibilidade e auditoria
         standings_raw = extractor.get_standings()
